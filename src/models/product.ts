@@ -1,7 +1,7 @@
 import Client from '../database';
 
 export type Product  = {
-    id:Number;
+    id?:Number;
     product:string;
     vendor:string;
 }
@@ -20,6 +20,7 @@ export class ProductStore{
     }
 
     async show(id: string): Promise<Product>{
+        console.log("inside show model " + id);
         try {
             const sql = 'SELECT * FROM products WHERE id=($1)';// @ts-ignore
             const conn = await Client.connect();
@@ -39,7 +40,7 @@ export class ProductStore{
     }
     async create(p: Product): Promise<Product> {
         try {
-      const sql = 'INSERT INTO product (product, vendor) VALUES($1, $2) RETURNING *';// @ts-ignore
+      const sql = 'INSERT INTO products (product, vendor) VALUES($1, $2) RETURNING *';// @ts-ignore
       const conn = await Client.connect();
   
       const result = await conn.query(sql, [p.product, p.vendor]);
@@ -53,9 +54,25 @@ export class ProductStore{
             throw new Error(`Could not add new product ${p.product}. Error: ${error}`)
         }
     }
+    async update(p: Product): Promise<Product> {
+        try {
+      const sql = 'UPDATE products SET product =($1), vendor = ($2) WHERE id = ($3) RETURNING *';// @ts-ignore
+      const conn = await Client.connect();
+  
+      const result = await conn.query(sql, [p.product, p.vendor, p.id]);
+  
+      const product = result.rows[0];
+  
+      conn.release();
+  
+      return product;
+        } catch (error) {
+            throw new Error(`Could not add new product ${p.product}. Error: ${error}`)
+        }
+    }
     async delete(id: string): Promise<Product> {
         try {
-      const sql = 'DELETE FROM product WHERE id=($1)';
+      const sql = 'DELETE FROM products WHERE id=($1)';
       // @ts-ignore
       const conn = await Client.connect();
   
