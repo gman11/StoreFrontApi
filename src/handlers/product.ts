@@ -16,12 +16,12 @@ const show = async (req: Request, res: Response) =>{
 }
 const create  = async (req: Request, res: Response) =>{
     console.log("inside create");
-    console.log(req.body.product);
+    console.log(req.body.name);
    try {
       const newProduct: Product = {
           id: 0,
-          product: req.body.product,
-          vendor: req.body.vendor
+          name: req.body.name,
+          price: req.body.price
       }
      const product = await store.create(newProduct);
      res.json(product);
@@ -37,8 +37,8 @@ const update = async (req: Request, res: Response) =>{
     try{
     const updateProduct: Product = {
         id: req.body.id,
-        product: req.body.product,
-        vendor: req.body.vendor
+        name: req.body.name,
+        price: req.body.price
     }
     console.log(updateProduct);
     const product = await store.update(updateProduct);

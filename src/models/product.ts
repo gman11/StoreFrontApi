@@ -2,8 +2,8 @@ import Client from '../database';
 
 export type Product  = {
     id?:Number;
-    product:string;
-    vendor:string;
+    name:string;
+    price:string;
 }
 
 export class ProductStore{
@@ -40,10 +40,10 @@ export class ProductStore{
     }
     async create(p: Product): Promise<Product> {
         try {
-      const sql = 'INSERT INTO products (product, vendor) VALUES($1, $2) RETURNING *';// @ts-ignore
+      const sql = 'INSERT INTO products (name, price) VALUES($1, $2) RETURNING *';// @ts-ignore
       const conn = await Client.connect();
   
-      const result = await conn.query(sql, [p.product, p.vendor]);
+      const result = await conn.query(sql, [p.name, p.price]);
   
       const product = result.rows[0];
   
@@ -51,15 +51,15 @@ export class ProductStore{
   
       return product;
         } catch (error) {
-            throw new Error(`Could not add new product ${p.product}. Error: ${error}`)
+            throw new Error(`Could not add new product ${p.name}. Error: ${error}`)
         }
     }
     async update(p: Product): Promise<Product> {
         try {
-      const sql = 'UPDATE products SET product =($1), vendor = ($2) WHERE id = ($3) RETURNING *';// @ts-ignore
+      const sql = 'UPDATE products SET name =($1), price = ($2) WHERE id = ($3) RETURNING *';// @ts-ignore
       const conn = await Client.connect();
   
-      const result = await conn.query(sql, [p.product, p.vendor, p.id]);
+      const result = await conn.query(sql, [p.name, p.price, p.id]);
   
       const product = result.rows[0];
   
@@ -67,7 +67,7 @@ export class ProductStore{
   
       return product;
         } catch (error) {
-            throw new Error(`Could not add new product ${p.product}. Error: ${error}`)
+            throw new Error(`Could not add new product ${p.name}. Error: ${error}`)
         }
     }
     async delete(id: string): Promise<Product> {

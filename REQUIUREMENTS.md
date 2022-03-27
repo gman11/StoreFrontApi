@@ -10,6 +10,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Show
    route: "/products:id" [GET]
 - Create [token required]
+    route "/products" [POST]
 - [OPTIONAL] Top 5 most popular products 
 - [OPTIONAL] Products by category (args: product category)
 
