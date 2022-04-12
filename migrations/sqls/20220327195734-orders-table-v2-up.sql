@@ -1,8 +1,8 @@
 /* Replace with your SQL commands */
 CREATE TABLE orders(
     id SERIAL PRIMARY KEY,
-    product_id REFERENCES products (id),
+    product_id int REFERENCES products(id),
     quantity float8,
-    user_id REFERENCES users (id),
+    user_id int REFERENCES users(id),
     status VARCHAR(150)
 );

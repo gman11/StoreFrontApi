@@ -9,6 +9,7 @@ const {
     POSTGRES_PASSWORD,
 } = process.env;
 
+
 const client = new Pool({
     host : POSTGRES_HOST,
     database: POSTGRES_DB,
