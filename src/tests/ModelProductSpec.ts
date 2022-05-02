@@ -18,5 +18,22 @@ describe("Product Model", () =>{
     it("should have a update method",() =>{
         expect(productStore.update).toBeDefined();
     });
+    it('create method should add a product', async () => {
+        const result = await productStore.create({
+          name: 'Pencil',
+          price: '5'
+        });
+        expect(result).toEqual({
+          id:1, 
+          name: 'Pencil',
+          price:'5'
+        });
+    });
+    it('index method should return a list of products', async () => {
+        const result = await productStore.index();
+        console.log("test list");
 
+        console.log(result);
+        expect(result.length).toEqual(1);  
+    });     
 });

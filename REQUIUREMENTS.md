@@ -11,24 +11,23 @@ These are the notes from a meeting with the frontend developer that describe wha
    route: "/products:id" [GET]
 - Create [token required]
    route "/products" [POST]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
 
 #### Users
 - Index [token required]
+   route: "/user" [GET]
 - Show [token required]
-- Create N[token required]
+   route: "/user:id [GET]
+- Create [token required]
+   route: "/user:user" [POST]
 
 #### Orders
 - Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
-
+   route: "/orders:id" [GET]
 ## Data Shapes
 #### Product
 -  id
 - name
 - price
-- [OPTIONAL] category
 
 #### User
 - id

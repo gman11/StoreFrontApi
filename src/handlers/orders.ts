@@ -5,7 +5,6 @@ import {Order, OrderStore} from '../models/orders';
 const store = new OrderStore();
 
 const currentOrderByUser = async ( req: Request, res: Response) =>{
-    console.log("inside order show " + req.params.id);
     const order = await store.currentOrder(req.params.id);
     res.json(order);
 }
