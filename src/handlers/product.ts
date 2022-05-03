@@ -43,20 +43,11 @@ const update = async (req: Request, res: Response) =>{
     res.json(error)
    }
 }
-
-const destroy = async (req: Request, res: Response) =>{
-    const product = await store.delete(req.params.id);
-    res.json(product);
-}
-
-
 const product_routes= (app:express.Application) =>{
     app.get('/products', index);
     app.get('/products/:id', show);
     app.post('/products',verifyToken, create);
-    app.patch('/products', update);
-    app.delete('/products/:id', destroy);
-    
+    app.patch('/products', update);   
 }
 
 export default product_routes;
