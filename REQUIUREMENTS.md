@@ -21,8 +21,16 @@ These are the notes from a meeting with the frontend developer that describe wha
    route: "/user:user" [POST]
 
 #### Orders
+- Index [token required]
+   route: "/order" [GET]
+- Show [token required]
+   route: "/order:id [GET]
+- Create [token required]
+   route: "/order:" [POST]
 - Current Order by user (args: user id)[token required]
-   route: "/orders:id" [GET]
+   route: "/currentOrderByUser/:id" [GET]
+- add product to order
+   route: "/addProductToOrder/:id [POST]
 ## Data Shapes
 #### Product
 -  id
@@ -37,8 +45,11 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - id
-- id of each product in the order
-- quantity of each product in the order
 - user_id
 - status of order (active or complete)
 
+#### Orders_Products
+- id
+- order_id
+- product_id
+- quantity

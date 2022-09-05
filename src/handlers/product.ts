@@ -47,7 +47,7 @@ const product_routes= (app:express.Application) =>{
     app.get('/products', index);
     app.get('/products/:id', show);
     app.post('/products',verifyToken, create);
-    app.patch('/products', update);   
+    app.patch('/products',verifyToken, update);   
 }
 
 export default product_routes;

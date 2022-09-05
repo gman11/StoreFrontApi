@@ -34,15 +34,13 @@ export class UserStore{
             
         }
          catch (error) {
-            
             throw new Error(`Could not find user ${id}. Error: ${error}`);
-
         }    
     }
     async create(u: User): Promise<User> {
         try {
        
-            const sql = 'INSERT INTO users (firstName, lastName, password) VALUES($1, $2, $3) RETURNING *';// @ts-ignore
+            const sql = 'INSERT INTO users (firstname, lastname, password) VALUES($1, $2, $3) RETURNING *';// @ts-ignore
             const conn = await Client.connect();
   
             const hash = bcrypt.hashSync(
@@ -78,7 +76,6 @@ export class UserStore{
         return null; 
     } catch (error) {
         throw new Error(`Could not authenticate user ${u.id}. Error: ${error}`)
-
     }
    }
 }

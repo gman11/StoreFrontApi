@@ -12,7 +12,8 @@ const index = async (_req: Request, res: Response) =>{
 }
 
 const show = async (req: Request, res: Response) =>{
-    const user = await store.show(req.params.id);
+    const id:string = req.params.id;
+    const user = await store.show(id);
     res.json(user); 
 }
 const create  = async (req: Request, res: Response) =>{
@@ -25,6 +26,7 @@ const create  = async (req: Request, res: Response) =>{
       }
      const user = await store.create(newUser);
      let token = jwt.sign(user,jwt_token_secret,{expiresIn:'30d'}); 
+     res.status(200);
      res.json(token);
      
    } catch (error) {
@@ -33,6 +35,7 @@ const create  = async (req: Request, res: Response) =>{
    }
 }
 const authenticate = async (req: Request, res: Response) => {
+
     const user: User = {
       id: req.body.id,
       firstName: "",
@@ -41,9 +44,8 @@ const authenticate = async (req: Request, res: Response) => {
     }
 
     try {
-
         const u = await store.authenticate(user);
-        let token = jwt.sign({ user: u }, jwt_token_secret,{expiresIn:'30d'});        
+        let token = jwt.sign({ user: u }, jwt_token_secret,{expiresIn:'30d'});  
         res.json(token)
     } catch(error) {
         res.status(401)
