@@ -9,7 +9,10 @@
     "jasmine": "npx jasmine",
     "test": "npm run build && ENV=test &&  db-migrate up --env test && npx jasmine && db-migrate reset --env test  ",
     "test-db": "ENV=test db-migrate",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "pretest": "npm run build && ENV=test &&  db-migrate up --env test",
+    "test2": "export ENV=test && npx jasmine",
+    "posttest": "db-migrate reset --env test"
   },
   "author": "Jesus Guerrero",
   "license": "ISC",
