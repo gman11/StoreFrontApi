@@ -53,3 +53,26 @@ These are the notes from a meeting with the frontend developer that describe wha
 - order_id
 - product_id
 - quantity
+
+### Database Schema
+# Orders
+ -id      type integers, not null, primary key
+ -user_id type integer, foreign key users(id)
+ -status  type var(150)
+
+# users
+-id       type integer, not null, primary key
+-firstname type var(150)
+-lastname  type var(150)
+-password  type var(150)
+
+# products
+-id       type integer, not null, primary key
+-name     type var(150)
+-prive    type var(150)
+
+# orders_products
+-id       type integer, not null, primary key
+-order_id type integer, not null, foreign key orders(id)
+-product_id type integer, not null, foreign key products(id)
+-quantity  type integer, not null

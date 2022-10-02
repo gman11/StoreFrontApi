@@ -20,14 +20,13 @@ const create  = async (req: Request, res: Response) =>{
    try {
       const newUser: User = {
           id: 0,
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
           password: req.body.password
       }
      const user = await store.create(newUser);
-     let token = jwt.sign(user,jwt_token_secret,{expiresIn:'30d'}); 
-     res.status(200);
-     res.json(token);
+     res.status(201);
+     res.json(user);
      
    } catch (error) {
     res.status(400);
@@ -38,8 +37,8 @@ const authenticate = async (req: Request, res: Response) => {
 
     const user: User = {
       id: req.body.id,
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       password: req.body.password,
     }
 
